@@ -1,9 +1,9 @@
 .PHONY: setup 
 setup:
 	python3 -m venv .venv
-	. .venv/bin/activate
-	python3 -m pip install --upgrade pip setuptools wheel
-	pip install -r requirements.in
+	.venv/bin/pip install --upgrade pip setuptools wheel pip-tools
+	.venv/bin/pip-compile --generate-hashes --output-file=requirements.txt requirements.in 
+	.venv/bin/pip install -r requirements.txt
 
 .PHONY: run 
 run:
@@ -15,5 +15,5 @@ format:
 
 .PHONY: clean 
 clean:
-	deactivate
 	rm -f .venv
+	rm -f .pytest_cache
