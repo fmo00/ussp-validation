@@ -3,3 +3,4 @@ faker
 requests
 pytest
 black
+json_checker
