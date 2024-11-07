@@ -2,12 +2,21 @@ import requests
 from requests.exceptions import HTTPError
 
 class UTMClientConfig:
-    def __init__(self, base_url):
-        self.base_url = base_url
+    session = requests.Session()
+
+    def __init__(self):
+        return 
 
     def get_client_session(self):
         try:
-            return requests.Session()
+            return self.session
+        except HTTPError:
+            raise
+
+    def end_client_session(self):
+        try:
+            return self.session.close()
+            
         except HTTPError:
             raise
        
