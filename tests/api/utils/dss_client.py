@@ -7,10 +7,10 @@ class DssClient(UTMClientConfig):
         self.base_url = base_url
         self.session = session
 
-    def request_get_oir_query(self, request_body):
-        url = self.base_url + f'/operational_intent_references/query'
+    def request_get_oir_query(self, oir_id):
+        url = self.base_url + f'/operational_intent_references/${oir_id}'
        
-        req = Request('GET', url, request_body, headers={})
+        req = Request('GET', url, {}, {})
         prepped_req = self.session.prepare_request(req)
         return self.session.send(prepped_req)
     
