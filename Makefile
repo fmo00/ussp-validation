@@ -16,4 +16,4 @@ format:
 .PHONY: clean 
 clean:
 	rm -f .venv
-	rm -f .pytest_cache
+	find . -type d -name __pycache__ -exec rm -r {} \;
