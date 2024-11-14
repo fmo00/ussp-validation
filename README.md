@@ -6,7 +6,6 @@ This repository contains BR-UTM's implementation of a validation tool for UAS Se
 
 Compliance with the following standards and regulations:
 
-- [ASTM F3411-19](https://www.astm.org/f3411-19.html);
 - [ASTM F3411-22](https://www.astm.org/f3411-22.html): Remote ID;
 - [ASTM F3548-21](https://www.astm.org/f3548-21.html): UAS Traffic Management (UTM), UAS Service Supplier (USS) and Interoperability Specification.
 
