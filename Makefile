@@ -14,7 +14,7 @@ start-auth-tests:
 	pytest ./tests/api/auth/
 
 .PHONY: start-oir-tests
-start-auth-tests:
+start-oir-tests:
 	pytest ./tests/api/oir/
 
 .PHONY: format 

@@ -6,12 +6,12 @@ from . import OirMocks
 
 
 class TestClassUssForbiddenAuthentication:
-    def __get_ussp_client(self, set_env_vars: _Environ[str]) -> UsspClient:
+    def __get_ussp_client(self) -> UsspClient:
         session = UTMClientConfig().get_client_session()
-        return UsspClient(session, set_env_vars, is_mocked=True)
+        return UsspClient(session, is_mocked=True)
 
-    def test_case_bearer_token_validation(self, set_env_vars: _Environ[str]) -> None:
-        ussp_client = self.__get_ussp_client(set_env_vars)
+    def test_case_bearer_token_validation(self) -> None:
+        ussp_client = self.__get_ussp_client()
 
         response = ussp_client.get_oir_by_id(OirMocks.OIR_ID)
         if _is_client_response_forbidden(response):

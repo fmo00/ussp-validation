@@ -1,4 +1,4 @@
-from os import _Environ
+from os import environ
 from . import UsspClient, DssClient, UTMClientConfig
 from . import OirMocks as OIR_MOCKS
 from . import _is_client_response_successful
@@ -6,14 +6,12 @@ from . import _is_client_response_successful
 
 class TestClassIsolatedOirInjection:
 
-    def __get_ussp_client(self, set_env_vars: _Environ[str]) -> UsspClient:
-        session = UTMClientConfig().get_client_session()
-        return UsspClient(session, set_env_vars)
+    def __get_ussp_client(self) -> UsspClient:
+        return UsspClient(UTMClientConfig().get_client_session(), is_mocked=False)
 
-    def __get_dss_client(self, set_env_vars: _Environ[str]) -> DssClient:
-        session = UTMClientConfig().get_client_session()
-        client = DssClient(session, set_env_vars)
-        return client
+    def __get_dss_client(self) -> DssClient:
+        return DssClient(UTMClientConfig().get_client_session())
+        
 
     def __validate_oir_object(self, dss_oir, ussp_oir) -> None:
         ussp_oir_ref = ussp_oir["operational_intent"]["reference"]
@@ -22,10 +20,10 @@ class TestClassIsolatedOirInjection:
         assert ussp_oir_ref is dss_oir_ref
         return
 
-    def test_case_isolated_oir(self, set_env_vars: _Environ[str]) -> None:
-        ussp_client = self.__get_ussp_client(set_env_vars)
-        dss_client = self.__get_dss_client(set_env_vars)
-
+    def test_case_isolated_oir(self) -> None:
+        ussp_client = self.__get_ussp_client()
+        dss_client = self.__get_dss_client()
+        
         create_oir_ussp_response = ussp_client.put_oir(
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )

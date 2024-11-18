@@ -1,17 +1,17 @@
 from api.utils.client.utm_client import UTMClientConfig
 from requests import Request, Session, Response
-from os import _Environ
+from os import environ
 from . import AuthenticationHeaderBuilder
 from api.utils.client.auth_client import AuthenticationClient
 
 
 class UsspClient(UTMClientConfig):
-    def __init__(self, session: Session, set_env_vars: _Environ[str], is_mocked: bool):
+    def __init__(self, session: Session, is_mocked: bool):
         super().__init__()
-        self.base_url = set_env_vars.get("USSP_URL")
+        self.base_url = environ.get("USSP_URL")
         self.session = session
-        self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked, set_env_vars)
-        self.auth_client = AuthenticationClient(session, set_env_vars, is_mocked)
+        self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked)
+        self.auth_client = AuthenticationClient(session, is_mocked)
 
     def __get_bearer_token(self) -> Response:
         return self.auth_client.get_bearer_token()
