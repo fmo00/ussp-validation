@@ -1,6 +1,6 @@
 from . import UsspClient, DssClient, UTMClientConfig
 from . import OirMocks as OIR_MOCKS
-from . import _is_client_response_not_found, _is_client_response_conflict
+from . import is_client_response_not_found, is_client_response_conflict
 
 
 class TestClassConflictedOirInjection:
@@ -25,14 +25,14 @@ class TestClassConflictedOirInjection:
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
-        if _is_client_response_conflict(create_oir_ussp_response):
+        if is_client_response_conflict(create_oir_ussp_response):
             assert True
 
         get_oir_dss_response = dss_client.get_oir_by_id(
             OIR_MOCKS.OIR_ID
         )
 
-        if _is_client_response_not_found(get_oir_dss_response):
+        if is_client_response_not_found(get_oir_dss_response):
             assert True
             return 
       

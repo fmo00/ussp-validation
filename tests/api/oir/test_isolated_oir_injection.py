@@ -1,7 +1,7 @@
 from os import environ
 from . import UsspClient, DssClient, UTMClientConfig
 from . import OirMocks as OIR_MOCKS
-from . import _is_client_response_successful
+from . import is_client_response_successful
 
 
 class TestClassIsolatedOirInjection:
@@ -28,13 +28,13 @@ class TestClassIsolatedOirInjection:
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
-        if not _is_client_response_successful(create_oir_ussp_response):
+        if not is_client_response_successful(create_oir_ussp_response):
             assert False 
 
         dss_oir_response = dss_client.get_oir_by_id(OIR_MOCKS.OIR_ID)
         ussp_oir_response = ussp_client.get_oir_by_id(OIR_MOCKS.OIR_ID)
 
-        if _is_client_response_successful(dss_oir_response) and _is_client_response_successful(
+        if is_client_response_successful(dss_oir_response) and is_client_response_successful(
             ussp_oir_response
         ):
             self.__validate_oir_object(
