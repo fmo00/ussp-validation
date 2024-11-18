@@ -25,22 +25,22 @@ class TestClassIsolatedOirInjection:
         ussp_client = self.__get_ussp_client(set_env_vars)
         dss_client = self.__get_dss_client(set_env_vars)
 
-        response = ussp_client.request_put_oir(
+        create_oir_ussp_response = ussp_client.request_put_oir(
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
-        if not _is_client_response_successful(response):
+        if not _is_client_response_successful(create_oir_ussp_response):
             assert False
 
-        dss_oir = dss_client.request_get_oir_query(OIR_MOCKS.OIR_ID)
-        ussp_oir = ussp_client.request_get_oir(OIR_MOCKS.OIR_ID)
+        dss_oir_response = dss_client.request_get_oir_by_id(OIR_MOCKS.OIR_ID)
+        ussp_oir_response = ussp_client.request_get_oir_by_id(OIR_MOCKS.OIR_ID)
 
-        if _is_client_response_successful(dss_oir) and _is_client_response_successful(
-            ussp_oir
+        if _is_client_response_successful(dss_oir_response) and _is_client_response_successful(
+            ussp_oir_response
         ):
             self.__validate_oir_object(
-                dss_oir.json(),
-                ussp_oir.json(),
+                dss_oir_response.json(),
+                ussp_oir_response.json(),
             )
 
         assert False

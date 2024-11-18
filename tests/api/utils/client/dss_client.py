@@ -25,15 +25,29 @@ class DssClient(UTMClientConfig):
         )
         self.session.headers.update(auth_header)
 
-    def request_get_oir_query(
+    def request_get_oir_by_id(
         self, set_env_vars: _Environ[str], oir_id: str
     ) -> Response:
-        url = self.base_url + f"/dss/v1/operational_intent_references/${oir_id}"
         self.__set_authentication_headers(set_env_vars)
+        url = self.base_url + f"/dss/v1/operational_intent_references/${oir_id}"
 
-        req = Request("GET", url, data={}, headers={})
+        req = Request("GET", url, data={})
         prepped_req = self.session.prepare_request(req)
         try:
             return self.session.send(prepped_req)
-        except Exception:
-            raise Exception()
+        except Exception as err:
+            raise err
+
+    #TODO: implement request body type class
+    def request_put_oir(
+        self, set_env_vars: _Environ[str], oir_id:str, request_body
+    ) -> Response:
+        self.__set_authentication_headers(set_env_vars)
+        url = self.base_url + f"/dss/v1/operational_intent_references/{oir_id}"
+        
+        req = Request("PUT", url, data=request_body)
+        prepped_req = self.session.prepare_request(req)
+        try:
+            return self.session.send(prepped_req)
+        except Exception as err:
+            raise err
