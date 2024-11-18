@@ -9,6 +9,14 @@ setup:
 run:
 	pytest ./tests/api/test.py
 
+.PHONY: start-auth-tests
+start-auth-tests:
+	pytest ./tests/api/auth/
+
+.PHONY: start-oir-tests
+start-auth-tests:
+	pytest ./tests/api/oir/
+
 .PHONY: format 
 format:
 	python3 -m black ./tests/api/
