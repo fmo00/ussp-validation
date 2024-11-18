@@ -1,1 +1,2 @@
+# ENDPOINT PATH
 GET_TOKEN_PATH = "/token"

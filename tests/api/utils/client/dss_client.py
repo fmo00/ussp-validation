@@ -10,8 +10,10 @@ class DssClient(UTMClientConfig):
         super().__init__()
         self.base_url = set_env_vars.get("DSS_URL")
         self.session = session
-        self.auth_header_builder = AuthenticationHeaderBuilder()
-        self.auth_client = AuthenticationClient()
+        self.auth_header_builder = AuthenticationHeaderBuilder(
+            set_env_vars, is_mocked=False
+        )
+        self.auth_client = AuthenticationClient(session, set_env_vars, is_mocked=False)
 
     def __get_bearer_token(self, set_env_vars: _Environ[str]) -> Response:
         return self.auth_client.request_bearer_token(set_env_vars)
