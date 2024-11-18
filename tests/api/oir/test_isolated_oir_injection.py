@@ -20,20 +20,21 @@ class TestClassIsolatedOirInjection:
         dss_oir_ref = dss_oir["operational_intent_reference"]
 
         assert ussp_oir_ref is dss_oir_ref
+        return
 
     def test_case_isolated_oir(self, set_env_vars: _Environ[str]) -> None:
         ussp_client = self.__get_ussp_client(set_env_vars)
         dss_client = self.__get_dss_client(set_env_vars)
 
-        create_oir_ussp_response = ussp_client.request_put_oir(
+        create_oir_ussp_response = ussp_client.put_oir(
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
         if not _is_client_response_successful(create_oir_ussp_response):
-            assert False
+            assert False 
 
-        dss_oir_response = dss_client.request_get_oir_by_id(OIR_MOCKS.OIR_ID)
-        ussp_oir_response = ussp_client.request_get_oir_by_id(OIR_MOCKS.OIR_ID)
+        dss_oir_response = dss_client.get_oir_by_id(OIR_MOCKS.OIR_ID)
+        ussp_oir_response = ussp_client.get_oir_by_id(OIR_MOCKS.OIR_ID)
 
         if _is_client_response_successful(dss_oir_response) and _is_client_response_successful(
             ussp_oir_response

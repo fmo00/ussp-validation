@@ -16,7 +16,7 @@ class TestClassConflictedOirInjection:
         return client
     
     def test_setup(self, dss_client: DssClient, set_env_vars) -> None:
-        dss_client.request_put_oir(set_env_vars,OIR_MOCKS.OIR_ID,OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
+        dss_client.put_oir(set_env_vars,OIR_MOCKS.OIR_ID,OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
     def test_case_conflicted_oir(self, set_env_vars: _Environ[str]) -> None:
@@ -25,14 +25,14 @@ class TestClassConflictedOirInjection:
 
         self.test_setup(dss_client,set_env_vars)
 
-        create_oir_ussp_response = ussp_client.request_put_oir(
+        create_oir_ussp_response = ussp_client.put_oir(
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
         if _is_client_response_conflict(create_oir_ussp_response):
             assert True
 
-        get_oir_dss_response = dss_client.request_get_oir_by_id(set_env_vars,
+        get_oir_dss_response = dss_client.get_oir_by_id(set_env_vars,
             OIR_MOCKS.OIR_ID
         )
 

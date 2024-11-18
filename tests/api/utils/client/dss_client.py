@@ -16,7 +16,7 @@ class DssClient(UTMClientConfig):
         self.auth_client = AuthenticationClient(session, set_env_vars, is_mocked=False)
 
     def __get_bearer_token(self, set_env_vars: _Environ[str]) -> Response:
-        return self.auth_client.request_bearer_token(set_env_vars)
+        return self.auth_client.get_bearer_token(set_env_vars)
 
     def __set_authentication_headers(self, set_env_vars: _Environ[str]) -> None:
         bearer_token = self.__get_bearer_token(set_env_vars).json()["access_token"]
@@ -25,7 +25,7 @@ class DssClient(UTMClientConfig):
         )
         self.session.headers.update(auth_header)
 
-    def request_get_oir_by_id(
+    def get_oir_by_id(
         self, set_env_vars: _Environ[str], oir_id: str
     ) -> Response:
         self.__set_authentication_headers(set_env_vars)
@@ -39,7 +39,7 @@ class DssClient(UTMClientConfig):
             raise err
 
     #TODO: implement request body type class
-    def request_put_oir(
+    def put_oir(
         self, set_env_vars: _Environ[str], oir_id:str, request_body
     ) -> Response:
         self.__set_authentication_headers(set_env_vars)

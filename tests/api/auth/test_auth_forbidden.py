@@ -13,8 +13,9 @@ class TestClassUssForbiddenAuthentication:
     def test_case_bearer_token_validation(self, set_env_vars: _Environ[str]) -> None:
         ussp_client = self.__get_ussp_client(set_env_vars)
 
-        response = ussp_client.request_get_oir_by_id(OirMocks.OIR_ID)
+        response = ussp_client.get_oir_by_id(OirMocks.OIR_ID)
         if _is_client_response_forbidden(response):
             assert True
-
+            return
+        
         assert False

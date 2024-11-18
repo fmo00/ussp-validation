@@ -14,7 +14,7 @@ class UsspClient(UTMClientConfig):
         self.auth_client = AuthenticationClient(session, set_env_vars, is_mocked)
 
     def __get_bearer_token(self) -> Response:
-        return self.auth_client.request_bearer_token()
+        return self.auth_client.get_bearer_token()
 
     def __set_authentication_headers(self) -> None:
         bearer_token = self.__get_bearer_token().json()["access_token"]
@@ -24,7 +24,7 @@ class UsspClient(UTMClientConfig):
         self.session.headers.update(auth_header)
 
     # TODO: implement request body type
-    def request_put_oir(self, flight_plan_id: str, request_body) -> Response:
+    def put_oir(self, flight_plan_id: str, request_body) -> Response:
         self.__set_authentication_headers()
         url = self.base_url + f"/flight_planning/v1/flight_plans/{flight_plan_id}"
 
@@ -36,7 +36,7 @@ class UsspClient(UTMClientConfig):
         except Exception as err:
             raise err
 
-    def request_get_oir_by_id(self, oir_id: str) -> Response:
+    def get_oir_by_id(self, oir_id: str) -> Response:
         self.__set_authentication_headers()
 
         url = self.base_url + f"/uss/v1/operational_intents/${oir_id}"

@@ -12,7 +12,7 @@ class AuthenticationClient(UTMClientConfig):
         self.session = session
         self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked, set_env_vars)
 
-    def request_bearer_token(self) -> Response:
+    def get_bearer_token(self) -> Response:
         url = self.base_url + GET_TOKEN_PATH
         params = self.auth_header_builder.get_request_bearer_token_parameters()
 
