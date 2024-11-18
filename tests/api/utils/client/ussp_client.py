@@ -1,11 +1,12 @@
 from api.utils.client.utm_client import UTMClientConfig
 from requests import Request, Session, Response
+from os import _Environ
 
 
 class UsspClient(UTMClientConfig):
-    def __init__(self, session: Session, base_url: str):
+    def __init__(self, session: Session, set_env_vars: _Environ[str]):
         super().__init__()
-        self.base_url = base_url
+        self.base_url = set_env_vars.get("USSP_URL")
         self.session = session
 
     def request_put_oir(self, oir_id: str, request_body) -> Response:
@@ -18,7 +19,7 @@ class UsspClient(UTMClientConfig):
             raise err
 
     def request_get_oir(self, oir_id: str) -> Response:
-        url = self.base_url + f"/operational_intents/${oir_id}"
+        url = self.base_url + f"/uss/v1/operational_intents/${oir_id}"
         req = Request("GET", url, {}, {})
         prepped_req = self.session.prepare_request(req)
 
