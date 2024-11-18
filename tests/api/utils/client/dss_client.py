@@ -7,7 +7,6 @@ from api.utils.client.auth_client import AuthenticationClient
 
 class DssClient:
     def __init__(self):
-        super().__init__()
         self.base_url = environ.get("DSS_URL")
         self.session = ClientSessionConfig().get_client_session()
         self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked=False)
