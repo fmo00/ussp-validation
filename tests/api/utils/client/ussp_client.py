@@ -1,17 +1,16 @@
-from api.utils.client.utm_client import UTMClientConfig
 from requests import Request, Session, Response
 from os import environ
+from api.utils.client.client_session_config import ClientSessionConfig
 from . import AuthenticationHeaderBuilder
 from api.utils.client.auth_client import AuthenticationClient
 
 
-class UsspClient(UTMClientConfig):
-    def __init__(self, session: Session, is_mocked: bool):
-        super().__init__()
+class UsspClient:
+    def __init__(self, is_mocked: bool):
         self.base_url = environ.get("USSP_URL")
-        self.session = session
+        self.session = ClientSessionConfig().get_client_session()
         self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked)
-        self.auth_client = AuthenticationClient(session, is_mocked)
+        self.auth_client = AuthenticationClient(is_mocked)
 
     def __get_bearer_token(self) -> Response:
         return self.auth_client.get_bearer_token()
@@ -40,7 +39,7 @@ class UsspClient(UTMClientConfig):
         self.__set_authentication_headers()
 
         url = self.base_url + f"/uss/v1/operational_intents/${oir_id}"
-        req = Request("GET", url )
+        req = Request("GET", url)
         prepped_req = self.session.prepare_request(req)
 
         try:

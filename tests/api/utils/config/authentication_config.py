@@ -9,9 +9,7 @@ class AuthenticationHeaderBuilder:
         )
 
     # TODO: add return types for this class methods
-    def __build_request_bearer_token_parameters(
-        self, is_mocked: bool
-    ):
+    def __build_request_bearer_token_parameters(self, is_mocked: bool):
         return (
             self.__build_mocked_request_bearer_token_parameters()
             if is_mocked
@@ -21,9 +19,7 @@ class AuthenticationHeaderBuilder:
     def __build_mocked_request_bearer_token_parameters(self):
         return AuthenticationMocks.INVALID_AUTH_PARAMETERS
 
-    def __build_valid_request_bearer_token_parameters(
-        self
-    ):
+    def __build_valid_request_bearer_token_parameters(self):
         return {
             "scope": environ.get("DSS_REQUEST_SCOPE"),
             "intended_audience": environ.get("DSS_REQUEST_INTENDED_AUDIENCE"),

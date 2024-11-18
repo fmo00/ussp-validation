@@ -2,7 +2,7 @@ from requests import Session
 from requests.exceptions import HTTPError
 
 
-class UTMClientConfig:
+class ClientSessionConfig:
     session = Session()
 
     def __init__(self):

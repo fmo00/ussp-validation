@@ -1,15 +1,14 @@
-from api.utils.client.utm_client import UTMClientConfig
 from os import environ
 from requests import Request, Response, Session
+from api.utils.client.client_session_config import ClientSessionConfig
 from . import AuthenticationHeaderBuilder
 from . import GET_TOKEN_PATH
 
 
-class AuthenticationClient(UTMClientConfig):
-    def __init__(self, session: Session, is_mocked: bool):
-        super().__init__()
+class AuthenticationClient:
+    def __init__(self, is_mocked: bool):
         self.base_url = environ.get("KONG_URL")
-        self.session = session
+        self.session = ClientSessionConfig().get_client_session()
         self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked)
 
     def get_bearer_token(self) -> Response:
