@@ -20,5 +20,5 @@ class AuthenticationClient:
 
         try:
             return self.session.send(prepped_req)
-        except Exception:
-            raise Exception()
+        except Exception as err:
+            raise err

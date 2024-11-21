@@ -11,12 +11,12 @@ class ClientSessionConfig:
     def get_client_session(self) -> Session:
         try:
             return self.session
-        except HTTPError:
-            raise
+        except HTTPError as err:
+            raise err
 
     def end_client_session(self) -> None:
         try:
             return self.session.close()
 
-        except HTTPError:
-            raise
+        except HTTPError as err:
+            raise err
