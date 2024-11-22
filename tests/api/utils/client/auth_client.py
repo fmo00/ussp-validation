@@ -7,7 +7,7 @@ from . import GET_TOKEN_PATH
 
 class AuthenticationClient:
     def __init__(self, is_mocked: bool):
-        self.base_url = environ.get("KONG_URL")
+        self.base_url: str = environ.get("KONG_URL")
         self.session = ClientSessionConfig().get_client_session()
         self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked)
 
