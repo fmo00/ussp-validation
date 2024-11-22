@@ -23,5 +23,5 @@ format:
 
 .PHONY: clean 
 clean:
-	rm -f .venv
+	rm -r .venv
 	find . -type d -name __pycache__ -exec rm -r {} \;

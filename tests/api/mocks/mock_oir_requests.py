@@ -1,7 +1,7 @@
 class OirMocks:
-    OIR_ID = "9d158f59-80b7-4c11-9c0c-8a2b4d936b2d"
+    OIR_ID: str = "9d158f59-80b7-4c11-9c0c-8a2b4d936b2d"
 
-    INVALID_OIR_ID = "000000"
+    INVALID_OIR_ID: str = "000000"
 
     USSP_OIR_INJECTION_REQUEST_BODY = {
         "type": "FeatureCollection",

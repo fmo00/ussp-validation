@@ -1,4 +1,3 @@
-from os import environ
 from . import UsspClient, DssClient
 from . import OirMocks as OIR_MOCKS
 from . import is_client_response_successful
@@ -7,7 +6,7 @@ from . import is_client_response_successful
 class TestClassIsolatedOirInjection:
 
     def __get_ussp_client(self) -> UsspClient:
-        return UsspClient( is_mocked=False)
+        return UsspClient(is_mocked=False)
 
     def __get_dss_client(self) -> DssClient:
         return DssClient()
