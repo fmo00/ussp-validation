@@ -6,7 +6,7 @@ from dataclasses import dataclass
 class OirInjectionRequestDto:
     flight_type: str
     extents: Volume4dDto
-    #TODO: add key type
+    # TODO: add key type
     key: None
     state: str
     uss_base_url: str

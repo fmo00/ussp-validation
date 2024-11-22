@@ -24,13 +24,8 @@ class TestClassConflictedOirInjection:
             OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
         )
 
-        if is_client_response_conflict(create_oir_ussp_response):
-            assert True
+        assert is_client_response_conflict(create_oir_ussp_response)
 
         get_oir_dss_response = dss_client.get_oir_by_id(OIR_MOCKS.OIR_ID)
 
-        if is_client_response_not_found(get_oir_dss_response):
-            assert True
-            return
-
-        assert False
+        assert is_client_response_not_found(get_oir_dss_response)
