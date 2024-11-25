@@ -12,3 +12,7 @@ STRATEGIC_COORDINATION_SCOPE_VALUE: str = "utm.strategic_coordination"
 
 INTENDED_AUDIENCE_DSS_VALUE: str = "core-service"
 INTENDED_AUDIENCE_USSP_VALUE: str = "icea"
+
+# Client type value
+DSS_CLIENT_TYPE: str = "dss"
+USSP_CLIENT_TYPE: str = "ussp"

@@ -6,10 +6,11 @@ from . import is_client_response_successful
 class TestClassIsolatedOirInjection:
 
     def __get_ussp_client(self) -> UsspClient:
-        return UsspClient(is_mocked=False)
+        #TODO: create constant for request scope types
+        return UsspClient(is_mocked=False, request_scope="coordination")
 
     def __get_dss_client(self) -> DssClient:
-        return DssClient()
+        return DssClient(request_scope="coordination")
 
     def __is_oir_object_a_match(self, dss_oir, ussp_oir) -> bool:
         ussp_oir_ref = ussp_oir["operational_intent"]["reference"]

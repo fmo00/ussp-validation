@@ -1,26 +1,24 @@
 from os import environ
-from requests import Request, Response, Session
+from requests import Request, Response
 from api.utils.client.client_session_config import ClientSessionConfig
-from . import AuthenticationHeaderBuilder
 from api.utils.client.auth_client import AuthenticationClient
+from . import DSS_CLIENT_TYPE
 
 
 class DssClient:
-    def __init__(self):
+    def __init__(self, request_scope: str):
         self.base_url = environ.get("DSS_URL")
         self.session = ClientSessionConfig().get_client_session()
-        self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked=False)
-        self.auth_client = AuthenticationClient(is_mocked=False)
+        self.auth_client = AuthenticationClient(
+            is_mocked=False, scope=request_scope, client_type=DSS_CLIENT_TYPE
+        )
 
     def __get_bearer_token(self) -> Response:
         return self.auth_client.get_bearer_token()
 
     def __set_authentication_headers(self) -> None:
         bearer_token = self.__get_bearer_token().json()["access_token"]
-        auth_header = self.auth_header_builder.build_authentication_headers(
-            str(bearer_token)
-        )
-        self.session.headers.update(auth_header)
+        self.session.headers.update({"Authorization": "Bearer" + str(bearer_token)})
 
     def get_oir_by_id(self, oir_id: str) -> Response:
         self.__set_authentication_headers()

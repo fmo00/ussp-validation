@@ -1,26 +1,24 @@
-from requests import Request, Session, Response
+from requests import Request, Response
 from os import environ
 from api.utils.client.client_session_config import ClientSessionConfig
-from . import AuthenticationHeaderBuilder
 from api.utils.client.auth_client import AuthenticationClient
+from . import USSP_CLIENT_TYPE
 
 
 class UsspClient:
-    def __init__(self, is_mocked: bool):
+    def __init__(self, is_mocked: bool, request_scope: str):
         self.base_url = environ.get("USSP_URL")
         self.session = ClientSessionConfig().get_client_session()
-        self.auth_header_builder = AuthenticationHeaderBuilder(is_mocked)
-        self.auth_client = AuthenticationClient(is_mocked)
+        self.auth_client = AuthenticationClient(
+            is_mocked, scope=request_scope, client_type=USSP_CLIENT_TYPE
+        )
 
     def __get_bearer_token(self) -> Response:
         return self.auth_client.get_bearer_token()
 
     def __set_authentication_headers(self) -> None:
         bearer_token = self.__get_bearer_token().json()["access_token"]
-        auth_header = self.auth_header_builder.build_authentication_headers(
-            str(bearer_token)
-        )
-        self.session.headers.update(auth_header)
+        self.session.headers.update({"Authorization": "Bearer" + str(bearer_token)})
 
     # TODO: implement request body type
     def put_oir(self, flight_plan_id: str, request_body) -> Response:

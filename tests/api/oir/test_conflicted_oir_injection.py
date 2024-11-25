@@ -6,10 +6,11 @@ from . import is_client_response_not_found, is_client_response_conflict
 class TestClassConflictedOirInjection:
 
     def __get_ussp_client(self) -> UsspClient:
-        return UsspClient(is_mocked=False)
+        #TODO: create constant for request scope types
+        return UsspClient(is_mocked=False, request_scope="coordination")
 
     def __get_dss_client(self) -> DssClient:
-        return DssClient()
+        return DssClient(request_scope="coordination")
 
     def test_setup(self, dss_client: DssClient) -> None:
         dss_client.put_oir(OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY)

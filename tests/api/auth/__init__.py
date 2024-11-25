@@ -5,7 +5,7 @@ from api.utils.validation.client_validation_func import (
     is_client_response_not_found,
 )
 from api.mocks.mock_oir_requests import OirMocks
-
+from api.constants.auth import CONSTRAINT_MANAGEMENT_SCOPE_VALUE
 
 __all_ = [
     UsspClient,
@@ -13,4 +13,5 @@ __all_ = [
     is_client_response_forbidden,
     is_client_response_not_found,
     OirMocks,
+    CONSTRAINT_MANAGEMENT_SCOPE_VALUE,
 ]

@@ -8,7 +8,6 @@ from api.utils.validation.client_validation_func import (
     is_client_response_successful,
 )
 
-
 __all_ = [
     DssClient,
     UsspClient,
