@@ -2,6 +2,7 @@ from os import environ
 from requests import Request, Response
 from api.utils.client.client_session_config import ClientSessionConfig
 from api.utils.client.auth_client import AuthenticationClient
+from api.dto.dss.oir.request.oir_injection_request_body import OirInjectionRequestDto
 from . import DSS_CLIENT_TYPE
 
 
@@ -31,8 +32,7 @@ class DssClient:
         except Exception as err:
             raise err
 
-    # TODO: implement request body type class
-    def put_oir(self, oir_id: str, request_body) -> Response:
+    def put_oir(self, oir_id: str, request_body:OirInjectionRequestDto) -> Response:
         self.__set_authentication_headers()
         url = self.base_url + f"/dss/v1/operational_intent_references/{oir_id}"
 
