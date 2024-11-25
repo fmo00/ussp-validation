@@ -1,0 +1,7 @@
+python-dotenv
+faker
+requests
+pytest
+black
+json_checker
+pytest-dotenv

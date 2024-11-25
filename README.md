@@ -19,3 +19,13 @@ Test cases are documented in the BR-UTM wiki.
 
 - [Contributing](./CONTRIBUTING.md)
 - [Style Guide](./STYLEGUIDE.md)
+
+## How to
+Must configure env variables before running tests, follow example env file.
+
+```
+$ make setup
+$ make start-auth-tests
+$ make start-oir-tests
+
+```
