@@ -5,7 +5,7 @@ from . import (
     QUERY_PARAM_SCOPE_NAME,
 )
 from . import AuthenticationMocks
-from api.utils.config.token_parameters_switch import scope_switcher, audience_switcher
+from api.utils.config.token_parameters_switch import audience_switcher
 
 
 class AuthenticationHeaderBuilder:
@@ -26,9 +26,6 @@ class AuthenticationHeaderBuilder:
     def __build_mocked_token_request_query_parameters(self) -> str:
         return AuthenticationMocks.INVALID_TOKEN_REQUEST_PARAMETER_STR
 
-    def __build_token_scope(self, scope: str) -> str:
-        return scope_switcher.get(scope)
-
     def __build_token_audience(self, client_type: str) -> str:
         return audience_switcher.get(client_type)
 
@@ -37,7 +34,7 @@ class AuthenticationHeaderBuilder:
     ) -> str:
         return (
             QUERY_PARAM_SCOPE_NAME
-            + self.__build_token_scope(scope)
+            + scope
             + QUERY_PARAM_INTENDED_AUDIENCE_NAME
             + self.__build_token_audience(client_type)
             + QUERY_PARAM_API_KEY_NAME

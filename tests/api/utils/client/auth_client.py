@@ -17,7 +17,7 @@ class AuthenticationClient:
         url = self.base_url + GET_TOKEN_PATH
         params = self.auth_header_builder.get_request_bearer_token_parameters()
 
-        req = Request("GET", url, params=params, headers=self.session.headers)
+        req = Request("GET", url, data={}, params=params, headers=self.session.headers)
         prepped_req = self.session.prepare_request(req)
 
         try:

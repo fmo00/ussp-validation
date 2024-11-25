@@ -1,3 +1,4 @@
+from api.constants.auth import CONSTRAINT_MANAGEMENT_SCOPE_VALUE
 from . import UsspClient, DssClient
 from . import OirMocks as OIR_MOCKS
 from . import is_client_response_successful
@@ -6,11 +7,12 @@ from . import is_client_response_successful
 class TestClassIsolatedOirInjection:
 
     def __get_ussp_client(self) -> UsspClient:
-        #TODO: create constant for request scope types
-        return UsspClient(is_mocked=False, request_scope="coordination")
+        return UsspClient(
+            is_mocked=False, request_scope=CONSTRAINT_MANAGEMENT_SCOPE_VALUE
+        )
 
     def __get_dss_client(self) -> DssClient:
-        return DssClient(request_scope="coordination")
+        return DssClient(request_scope=CONSTRAINT_MANAGEMENT_SCOPE_VALUE)
 
     def __is_oir_object_a_match(self, dss_oir, ussp_oir) -> bool:
         ussp_oir_ref = ussp_oir["operational_intent"]["reference"]
