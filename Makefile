@@ -1,12 +1,12 @@
 .PHONY: local-setup 
-setup:
+local-setup:
 	python3 -m venv .venv
 	.venv/bin/pip install --upgrade pip setuptools wheel pip-tools
 	.venv/bin/pip-compile --generate-hashes --output-file=requirements.txt requirements.in 
 	.venv/bin/pip install -r requirements.txt
 
 .PHONY: run-locally
-setup:
+run-locally:
 	pytest ./tests/api/test.py
 
 
