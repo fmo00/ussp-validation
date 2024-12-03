@@ -7,6 +7,8 @@ from api.utils.validation.client_validation_func import (
     is_client_response_conflict,
     is_client_response_successful,
 )
+from api.constants.auth import CONSTRAINT_MANAGEMENT_SCOPE_VALUE
+
 
 __all_ = [
     DssClient,
@@ -16,4 +18,5 @@ __all_ = [
     is_client_response_not_found,
     is_client_response_conflict,
     is_client_response_successful,
+    CONSTRAINT_MANAGEMENT_SCOPE_VALUE,
 ]
