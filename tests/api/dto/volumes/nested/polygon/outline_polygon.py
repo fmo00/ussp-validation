@@ -1,7 +1,6 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from api.dto.volumes.nested.polygon.vertices import PolygonVerticesDto
 
 
-@dataclass
-class OutlinePolygonDto:
+class OutlinePolygonDto(BaseModel):
     vertices: PolygonVerticesDto
