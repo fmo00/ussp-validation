@@ -8,8 +8,6 @@ COPY . /app
 RUN apt-get update && apt-get install -y python3 python3-pip python3-venv
 RUN pip install pip-tools && pip-compile --generate-hashes --output-file=requirements.txt requirements.in \
     && pip install -r requirements.txt
-RUN apt-get install make \
-    && make setup
 
 CMD ["pytest", "tests/api/test.py"]
 

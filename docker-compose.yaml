@@ -1,11 +1,11 @@
 services:
   ussp-validator:
-    container_name: ussp-validator
+    container_name: ussp-validator-suite
     restart: on-failure:3
     build:
       context: .
       dockerfile: Dockerfile
-    image: ussp-validator
+    image: ussp-validator-suite
     ports:
       - '8000:8000'
     volumes:
