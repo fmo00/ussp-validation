@@ -1,4 +1,4 @@
-from api.constants.auth import (
+from . import (
     QUERY_PARAM_API_KEY_NAME,
     QUERY_PARAM_INTENDED_AUDIENCE_NAME,
     QUERY_PARAM_SCOPE_NAME,

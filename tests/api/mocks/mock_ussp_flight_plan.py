@@ -1,4 +1,4 @@
-from api.dto.flight_plan.flight_plan_request import FlightPlanInjectionDto
+from . import FlightPlanInjectionDto
 from . import (
     usage_state_switcher,
     uas_state_switcher,
@@ -19,6 +19,20 @@ class UsspFlighPlanMocks:
         "flight_plan": {
             "basic_information": {
                 "usage_state": usage_state_switcher["PLANNED"],
+                "uas_state": uas_state_switcher["NOMINAL"],
+                "area": [VolumeMocks.VOLUME_4D],
+            },
+            "astm_f3548_21": FlightPlanMocks.ASTM_F3548_21_OP_INTENT,
+            "uspace_flight_authorisation": FlightPlanMocks.USPACE_FLIGHT_AUTH_DATA,
+        },
+        "execution_style": "IfAllowed",
+        "request_id": uuid4(),
+    }
+
+    USSP_PUT_FLIGHT_PLAN_ACCEPTED_STATE_REQUEST_BODY: FlightPlanInjectionDto = {
+        "flight_plan": {
+            "basic_information": {
+                "usage_state": usage_state_switcher[""],
                 "uas_state": uas_state_switcher["NOMINAL"],
                 "area": [VolumeMocks.VOLUME_4D],
             },

@@ -1,11 +1,6 @@
-from api.dto.flight_plan.nested.operation_intent_information import (
-    OperationIntentInformationDto,
-)
-from api.dto.flight_plan.nested.flight_authorisation_data import (
-    FlightAuthorisationDataDto,
-)
-from api.dto.flight_plan.operation_mode import operation_mode_switcher
-from api.dto.flight_plan.uas_class import uas_class_switcher
+from . import FlightAuthorisationDataDto, OperationIntentInformationDto
+from . import operation_mode_switcher
+from . import uas_class_switcher
 
 from faker import Faker
 from uuid import uuid4
