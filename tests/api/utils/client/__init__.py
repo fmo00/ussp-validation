@@ -6,6 +6,8 @@ from api.dto.dss.oir.request.oir_injection_request_body import OirInjectionReque
 from api.dto.dss.constraint.request.put_constraint_request import (
     PutConstraintRequestDto,
 )
+from api.dto.flight_plan.flight_plan_request import FlightPlanInjectionDto
+
 
 __all_ = [
     AuthenticationHeaderBuilder,
@@ -14,4 +16,5 @@ __all_ = [
     USSP_CLIENT_TYPE,
     OirInjectionRequestDto,
     PutConstraintRequestDto,
+    FlightPlanInjectionDto,
 ]
