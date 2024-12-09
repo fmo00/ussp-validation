@@ -2,6 +2,7 @@ from requests import Request, Response
 from os import environ
 from api.utils.client.client_session_config import ClientSessionConfig
 from api.utils.client.auth_client import AuthenticationClient
+from . import FlightPlanInjectionDto
 from . import USSP_CLIENT_TYPE
 import logging
 
@@ -23,8 +24,7 @@ class UsspClient:
         bearer_token = self.__get_bearer_token().json()["access_token"]
         self.session.headers.update({"Authorization": "Bearer" + str(bearer_token)})
 
-    # TODO: implement request body type
-    def put_oir(self, flight_plan_id: str, request_body) -> Response:
+    def put_oir(self, flight_plan_id: str, request_body: FlightPlanInjectionDto) -> Response:
         self.__set_authentication_headers()
         url = self.base_url + f"/flight_planning/v1/flight_plans/{flight_plan_id}"
 
