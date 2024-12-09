@@ -1,7 +1,7 @@
 from . import is_ussp_get_oir_response_compliant
 from . import CONSTRAINT_MANAGEMENT_SCOPE_VALUE
 from . import UsspClient, DssClient
-from . import UsspOirMocks as OIR_MOCKS
+from . import OIR_MOCKS
 from . import is_client_response_successful
 
 
