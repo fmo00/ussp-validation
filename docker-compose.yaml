@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     image: ussp-validator-suite
+    logging:
+      driver: fluentd
+      options:
+        tag: ussp-validator-suite
     ports:
       - '8000:8000'
     volumes:
