@@ -7,12 +7,12 @@ local-setup:
 
 .PHONY: run-locally
 run-locally:
-	pytest ./tests/api/test.py
+	pytest ./tests/ussp-api/test.py
 
 
 .PHONY: format 
 format:
-	python3 -m black ./tests/api/
+	python3 -m black ./tests/ussp-api/
 
 .PHONY: clean 
 clean:
