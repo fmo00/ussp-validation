@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from model.time_value import TimeValue
+from model.time.time_value import TimeValue
 
 
 class OirReference(BaseModel):
