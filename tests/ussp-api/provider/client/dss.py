@@ -1,17 +1,15 @@
 from os import environ
-import logging
 from requests import Request, Response
 from uuid import uuid4
 
-from api.utils.client.client_session_config import ClientSessionConfig
-from api.utils.client.auth_client import AuthenticationClient
+from utils.client.client_session_config import ClientSessionConfig
+from utils.client.auth_client import AuthenticationClient
 
 from . import OirInjectionRequestDto, PutConstraintRequestDto
 from . import DSS_CLIENT_TYPE
 
 
 class DssClient:
-    logger = logging.getLogger("http_logger")
 
     def __init__(self, request_scope: str):
         self.base_url = environ.get("DSS_API_URL")
@@ -33,15 +31,12 @@ class DssClient:
 
         req = Request("GET", url, data={})
         prepped_req = self.session.prepare_request(req)
-        self.logger.info(prepped_req.headers)
 
         try:
             response = self.session.send(prepped_req)
-            self.logger.info(response.json())
 
             return response
         except Exception as err:
-            self.logger.error(err)
             raise err
 
     def put_oir(self, oir_id: str, request_body: OirInjectionRequestDto) -> Response:
@@ -50,16 +45,12 @@ class DssClient:
 
         req = Request("PUT", url, data=request_body)
         prepped_req = self.session.prepare_request(req)
-        self.logger.info(prepped_req.headers)
-        self.logger.info(prepped_req.body)
 
         try:
             response = self.session.send(prepped_req)
-            self.logger.info(response.json())
 
             return response
         except Exception as err:
-            self.logger.error(err)
             raise err
 
     def put_constraint(self, request_body: PutConstraintRequestDto) -> Response:
@@ -70,14 +61,10 @@ class DssClient:
 
         req = Request("PUT", url, data=request_body)
         prepped_req = self.session.prepare_request(req)
-        self.logger.info(prepped_req.headers)
-        self.logger.info(prepped_req.body)
 
         try:
             response = self.session.send(prepped_req)
-            self.logger.info(response.json())
 
             return response
         except Exception as err:
-            self.logger.error(err)
             raise err

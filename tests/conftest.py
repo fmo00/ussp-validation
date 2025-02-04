@@ -9,11 +9,10 @@ custom_log_format = {
     "stack_trace": "%(exc_text)s",
 }
 
-fluentd_tag = "pytest.logs"
 
 @pytest.fixture(autouse=True)
 def load_env():
-   load_dotenv() 
+    load_dotenv()
 
 
 def pytest_logger_config(logger_config):

@@ -12,7 +12,7 @@ run-locally:
 
 .PHONY: format 
 format:
-	python3 -m black ./tests/api/
+	.venv/bin/python3 -m black ./tests/ussp-api/
 
 .PHONY: clean 
 clean:

@@ -1,16 +1,16 @@
 services:
-  ussp-validator:
-    container_name: ussp-validator-suite
-    restart: on-failure:3
+  ussp-test-suite:
+    container_name: ussp-test-suite
+    restart: on-failure
     build:
       context: .
       dockerfile: Dockerfile
-    image: ussp-validator-suite
+    image: ussp-test-suite
     logging:
       driver: fluentd
       options:
-        tag: ussp-validator-suite
+        tag: ussp-test-suite
     ports:
-      - '8000:8000'
+      - "8000:8000"
     volumes:
-      - '/data'
+      - "/data"

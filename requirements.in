@@ -3,7 +3,5 @@ requests
 pytest
 black
 pytest-logger
-fluent-logger
-pytest-html
 pydantic
 faker
