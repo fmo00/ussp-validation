@@ -1,7 +1,4 @@
 from os import environ
-import logging
-
-logger = logging.getLogger("http_logger")
 
 
 # TC example

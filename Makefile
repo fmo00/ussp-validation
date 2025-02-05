@@ -7,8 +7,7 @@ local-setup:
 
 .PHONY: run-locally
 run-locally:
-	pytest ./tests/api/test.py
-
+	.venv/bin/pytest --html=report.html --self-contained-html ./tests/api/oir
 
 .PHONY: format 
 format:
