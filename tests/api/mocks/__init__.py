@@ -23,8 +23,8 @@ from dto.flight_plan.usage_state import usage_state_switcher
 from dto.flight_plan.planning_result import planning_result_switcher
 from dto.flight_plan.flight_plan_status import flight_plan_status_switcher
 from dto.flight_plan.includes_advisories import includes_advisories_switcher
-from volume.mock_volume import VolumeMocks
-from mock_flight_plan_data import FlightPlanMocks
+from mocks.volume.mock_volume import VolumeMocks
+from mocks.mock_flight_plan_data import FlightPlanMocks
 
 from api.constants.auth import (
     QUERY_PARAM_API_KEY_NAME,
