@@ -9,7 +9,7 @@ from . import VOLUME_CONSTANTS
 
 class VolumeMocks:
 
-    CURRENT_DATE: datetime = datetime.now().isoformat()
+    CURRENT_DATE: datetime = datetime.now()
 
     THIRTY_DAYS_FROM_CURRENT_DATE: datetime = (
         CURRENT_DATE + timedelta(days=VOLUME_CONSTANTS.THRITY_DAYS_OFFSET)
