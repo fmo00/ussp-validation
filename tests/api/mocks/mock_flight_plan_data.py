@@ -7,6 +7,7 @@ from uuid import uuid4
 
 
 class FlightPlanMocks:
+    fake = Faker()
 
     ASTM_F3548_21_OP_INTENT: OperationIntentInformationDto = {"priority": 0}
 
@@ -17,7 +18,7 @@ class FlightPlanMocks:
         "uas_class": uas_class_switcher["C0"],
         "identification_technologies": ["ASTMNetRID"],
         "connectivity_methods": ["phone"],
-        "endurance_minutes": Faker.rd_number(),
-        "emergency_procedure_url": Faker.url(),
+        "endurance_minutes": fake.random_number(),
+        "emergency_procedure_url": fake.url(),
         "operator_id": uuid4(),
     }

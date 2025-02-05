@@ -1,10 +1,9 @@
 from typing import Optional
 from api.dto.volumes.volume_4d import Volume4dDto
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 
-@dataclass
-class OirInjectionRequestDto:
+class OirInjectionRequestDto(BaseModel):
     flight_type: str
     extents: Volume4dDto
     key: Optional[str] = None
