@@ -1,5 +1,5 @@
 from typing import Optional
-from api.dto.volumes.volume_4d import Volume4dDto
+from dto.volumes.volume_4d import Volume4dDto
 from pydantic import BaseModel
 
 

@@ -22,3 +22,5 @@ class FlightPlanMocks:
         "emergency_procedure_url": fake.url(),
         "operator_id": uuid4(),
     }
+
+    FLIGHT_PLAN_INJECTION_REQUEST = {}

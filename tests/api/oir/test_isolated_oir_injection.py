@@ -26,7 +26,7 @@ class TestClassIsolatedOirInjection:
         dss_client = self.__get_dss_client()
 
         create_oir_ussp_response = ussp_client.put_oir(
-            OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
+            OIR_MOCKS.OIR_ID, OIR_MOCKS.OIR_INJECTION_REQUEST_BODY
         )
 
         assert is_client_response_successful(create_oir_ussp_response)

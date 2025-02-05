@@ -23,6 +23,8 @@ from dto.flight_plan.usage_state import usage_state_switcher
 from dto.flight_plan.planning_result import planning_result_switcher
 from dto.flight_plan.flight_plan_status import flight_plan_status_switcher
 from dto.flight_plan.includes_advisories import includes_advisories_switcher
+from dto.dss.oir.request.oir_injection_request_body import OirInjectionRequestDto
+
 from mocks.volume.mock_volume import VolumeMocks
 from mocks.mock_flight_plan_data import FlightPlanMocks
 
@@ -40,6 +42,7 @@ __all_ = [
     OperationIntentInformationDto,
     FlightPlanInjectionDto,
     PutConstraintRequestDto,
+    OirInjectionRequestDto,
     uas_state_switcher,
     usage_state_switcher,
     planning_result_switcher,

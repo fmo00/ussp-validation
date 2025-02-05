@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from api.dto.flight_plan.nested.flight_plan import FlightPlanDto
+from dto.flight_plan.nested.flight_plan import FlightPlanDto
 
 
 class FlightPlanInjectionDto(BaseModel):

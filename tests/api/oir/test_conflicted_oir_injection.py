@@ -15,7 +15,7 @@ class TestClassConflictedOirInjection:
         return DssClient(request_scope=CONSTRAINT_MANAGEMENT_SCOPE_VALUE)
 
     def test_setup(self, dss_client: DssClient) -> None:
-        dss_client.put_oir(OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY)
+        dss_client.put_oir(OIR_MOCKS.OIR_ID, OIR_MOCKS.OIR_INJECTION_REQUEST_BODY)
 
     def test_case_conflicted_oir(self) -> None:
         ussp_client = self.__get_ussp_client()
@@ -24,7 +24,7 @@ class TestClassConflictedOirInjection:
         self.test_setup(dss_client)
 
         create_oir_ussp_response = ussp_client.put_oir(
-            OIR_MOCKS.OIR_ID, OIR_MOCKS.USSP_OIR_INJECTION_REQUEST_BODY
+            OIR_MOCKS.OIR_ID, OIR_MOCKS.OIR_INJECTION_REQUEST_BODY
         )
 
         assert is_client_response_conflict(create_oir_ussp_response)
