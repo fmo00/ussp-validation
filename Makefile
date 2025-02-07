@@ -9,6 +9,10 @@ local-setup:
 run-locally:
 	pytest ./tests/api/test.py
 
+.PHONY: run-v2
+run-v2:
+	pytest ./tests/ussp/test.py
+
 
 .PHONY: format 
 format:
